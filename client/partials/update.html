@@ -1,0 +1,84 @@
+<div class="container">
+    <div ng-controller="adminController" ng-init="render();">
+        {{ request.ToView }}
+        <h2>Request for <strong>{{ requestToView.username }}</strong></h2>
+        <h3>Fall Term</h3>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Course Name</th>
+                    <th>Rank</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="course in requestToView.request.fall">
+                    <td> {{ course.name }} </td>
+                    <td> {{ course.rank }} </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Winter Term</h3>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Course Name</th>
+                    <th>Rank</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="course in requestToView.request.winter">
+                    <td> {{ course.name }} </td>
+                    <td> {{ course.rank }} </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Spring Term</h3>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Course Name</th>
+                    <th>Rank</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="course in requestToView.request.spring">
+                    <td> {{ course.name }} </td>
+                    <td> {{ course.rank }} </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Year-Long Courses</h3>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Course Name</th>
+                    <th>Rank</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="course in requestToView.request.year">
+                    <td> {{ course.name }} </td>
+                    <td> {{ course.rank }} </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Student Comments:</h3>
+        <strong><p>{{ requestToView.request.comments }}</p></strong>
+        <br>
+        <br>
+        <form action="">
+            <input type="radio" name="status" ng-value="true" ng-model="requestToView.request.accepted"> Accept<br>
+            <input type="radio" name="status" ng-value="false" ng-model="requestToView.request.accepted"> Reject<br>
+            <textarea rows="4" cols="50" ng-model="requestToView.request.facultyComments">
+            
+            </textarea>
+            <a ng-click='submit()' class="btn btn-default">Submit</a>
+        </form>
+
+    </div>
+    <br>
+    <br>
+    <div ng-controller="logoutController">
+        <a ng-click='logout()' class="btn btn-default">Logout</a>
+    </div>
+</div>

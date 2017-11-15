@@ -1,0 +1,30 @@
+<div class="container">
+    <div ng-controller="adminController" ng-init="update();">
+        <h2>All Student Course Requests</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Status</th>
+                    <th>Student Comments</th>
+                    <th>Faculty Comments</th>
+                    <th>Reviewed?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="request in requests" ng-click="show(request)">
+                    <td> {{ request.username }} </td>
+                    <td> {{ request.request.accepted }} </td>
+                    <td> {{ request.request.comments }} </td>
+                    <td> {{ request.request.facultyComments }}</td>
+                    <td> {{ request.request.reviewed }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <br>
+    <div ng-controller="logoutController">
+        <a ng-click='logout()' class="btn btn-default">Logout</a>
+    </div>
+</div>

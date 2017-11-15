@@ -1,0 +1,46 @@
+<div ng-controller="loginController">
+    <div ng-init="persist()">
+        <h2>Currently Added</h2>
+        <div class="form-group">
+            <h2>Fall Trimester</h2>
+            <div ng-repeat="course in requests | filter: { term_name: 'Fall' }">
+                <p>{{ course.name }}</p>
+                <select class="custom-select" ng-model="course.rank">
+                <option value="1">First</option>
+                <option value="2">Second</option>
+                <option value="3">Third</option>
+            </select>
+            </div>
+            <h2>Winter Trimester</h2>
+            <div ng-repeat="course in requests | filter: { term_name: 'Winter' }">
+                <p>{{ course.name }}</p>
+                <select class="custom-select" ng-model="course.rank">
+                <option value="1">First</option>
+                <option value="2">Second</option>
+                <option value="3">Third</option>
+            </select>
+            </div>
+            <h2>Spring Trimester</h2>
+            <div ng-repeat="course in requests | filter: { term_name: 'Spring' }">
+                <p>{{ course.name }}</p>
+                <select class="custom-select" ng-model="course.rank">
+                <option value="1">First</option>
+                <option value="2">Second</option>
+                <option value="3">Third</option>
+            </select>
+            </div>
+            <h2>Year-long</h2>
+            <div ng-repeat="course in requests | filter: { term_name: 'Year-long' }">
+                <p>{{ course.name }}</p>
+                <select class="custom-select" ng-model="course.rank">
+                <option value="1">First</option>
+                <option value="2">Second</option>
+                <option value="3">Third</option>
+            </select>
+            </div>
+            <label for="comment">Comment:</label>
+            <textarea class="form-control" rows="5" id="comment" ng-model="requests.comments"></textarea>
+        </div>
+        <button type="button" class="btn btn-info" ng-click="submit();">Submit</button>
+    </div>
+</div>

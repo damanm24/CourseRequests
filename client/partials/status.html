@@ -1,0 +1,81 @@
+<div class="container">
+    <div ng-controller="statusController" ng-init="update();">
+        <a ng-click='test()' class="btn btn-default">Update</a>
+        <h2>Fall Term</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Course Name</th>
+                    <th>Rank</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="course in currentRequest.fall">
+                    <td> {{ course.name }} </td>
+                    <td> {{ course.rank }} </td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Winter Term</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Course Name</th>
+                    <th>Rank</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="course in currentRequest.winter">
+                    <td> {{ course.name }} </td>
+                    <td> {{ course.rank }} </td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Spring Term</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Course Name</th>
+                    <th>Rank</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="course in currentRequest.spring">
+                    <td> {{ course.name }} </td>
+                    <td> {{ course.rank }} </td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Year-Long Courses</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Course Name</th>
+                    <th>Rank</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="course in currentRequest.year">
+                    <td> {{ course.name }} </td>
+                    <td> {{ course.rank }} </td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Student Comments:</h2>
+        <p>{{ currentRequest.comments }}</p>
+        <h2>Faculty Comments:</h2>
+        <p>{{ currentRequest.facultyComments }}</p>
+        <br>
+        <div ng-switch="currentRequest.accepted">
+            <div ng-switch-when="true" class="alert alert-success">COURSE REQUEST ACCEPTED!</div>
+            <div ng-switch-when="false" class="alert alert-danger">COURSE REQUEST REJECTED!</div>
+            <div ng-switch-when="maybe" class="alert alert-warning">COURSE REQUEST NOT SEEN!</div>
+            <div ng-switch-default class="alert alert-warning">CLICK UPDATE!</div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div ng-controller="logoutController">
+        <a ng-click='logout()' class="btn btn-default">Logout</a>
+    </div>
+</div>

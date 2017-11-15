@@ -1,0 +1,51 @@
+<div ng-controller="loginController" ng-init="update()">
+    <h1>Hello {{user.firstname}}, </h1><br><br>
+    <p>Welcome. To begin start by clicking the add button to add the courses you want to your request.<br> You can see what
+        classes you have added by clicking the blue "Show" button. To remove classes click the items in the list.<br>When
+        you are done click the gray "Submit" button. Note this will overwrite any existing course request you have.<br> Also,
+        if you want to sort the table, click the bolded black words at the top</p>
+    <br>
+    <br>
+    <h2>Currently Added</h2>
+    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Show</button>
+    <div id="demo" class="collapse">
+        <ul ng-repeat="course in requests">
+            <a ng-click="remove(course, $index)">
+                <li>{{ course.name }} - {{ course.term_name }}</li>
+            </a>
+        </ul>
+    </div>
+    <br>
+    <br>
+    <a ng-click="save()" class="btn btn-default">Next</a>
+    <br>
+    <br>
+    <p>Here are the classes for next year: </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th ng-click="orderByMe('name')">Course Name</th>
+                <th ng-click="orderByMe('description')">Course Description</th>
+                <th ng-click="orderByMe('department_name')">Course Department</th>
+                <th ng-click="orderByMe('course')">Course Pre-req</th>
+                <th ng-click="orderByMe('term_name')">Term Offered</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="course in courses | orderBy:myOrderBy">
+                <td>{{ course.name }}</td>
+                <td>{{ course.description }}</td>
+                <td>{{ course.department_name }}</td>
+                <td>{{ course.requirements }}</td>
+                <td>{{ course.term_name }}</td>
+                <td><a ng-click="add(course)">Add</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<br>
+<br>
+<div ng-controller="logoutController">
+    <a ng-click='logout()' class="btn btn-default">Logout</a>
+</div>
