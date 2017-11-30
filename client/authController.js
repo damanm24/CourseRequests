@@ -1,6 +1,6 @@
 angular.module('myApp').controller('loginController',
-  ['$scope', '$location', 'AuthService', '$q',
-    function ($scope, $location, AuthService, $q) {
+  ['$scope', '$location', 'AuthService', '$q', 'CoursesService',
+    function ($scope, $location, AuthService, $q, CoursesService) {
       $scope.user = null;
       $scope.courses = null;
       $scope.requests = [];
@@ -32,8 +32,8 @@ angular.module('myApp').controller('loginController',
       $scope.update = function () {
         $scope.requests = [];
         $scope.user = AuthService.getUser();
-        AuthService.getCourses().then(function (data) {
-          AuthService.editCourses(data).then(function (result) {
+        CoursesService.getCourses().then(function (data) {
+          CoursesService.editCourses(data).then(function (result) {
             $scope.courses = result;
           })
         });
@@ -51,12 +51,12 @@ angular.module('myApp').controller('loginController',
       }
 
       $scope.save = function () {
-        AuthService.saveRequestSession($scope.requests, $scope.courses);
+        CoursesService.saveRequestSession($scope.requests, $scope.courses);
         $location.path('/save');
       }
 
       $scope.persist = function () {
-        $scope.requests = AuthService.getCurrentRequest();
+        $scope.requests = CoursesService.getCurrentRequest();
       }
 
       $scope.remove = function (course, index) {
@@ -85,7 +85,7 @@ angular.module('myApp').controller('loginController',
         coursesPrep.comments = $scope.requests.comments;
         coursesPrep.accepted = "maybe";
         coursesPrep.reviewed = false;
-        AuthService.submit(coursesPrep);
+        CoursesService.submit(coursesPrep);
         $location.path('/status')
       }
     }]);

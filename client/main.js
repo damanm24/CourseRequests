@@ -44,7 +44,7 @@ myApp.config(function ($routeProvider) {
     });
 });
 
-myApp.run(function ($rootScope, $location, $route, $cookies, AuthService, courseService) {
+myApp.run(function ($rootScope, $location, $route, $cookies, AuthService, CoursesService) {
   $rootScope.$on('$routeChangeStart',
     function (event, next, current) {
       AuthService.getUserStatus()

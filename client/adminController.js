@@ -1,6 +1,6 @@
 angular.module('myApp').controller('adminController',
-    ['$scope', '$location', 'AuthService',
-        function ($scope, $location, AuthService) {
+    ['$scope', '$location', 'AuthService', 'CoursesService',
+        function ($scope, $location, AuthService, CoursesService) {
             $scope.user = null;
             $scope.requests = null;
             $scope.requestToView = null;
@@ -30,7 +30,7 @@ angular.module('myApp').controller('adminController',
             };
 
             $scope.update = function () {
-                AuthService.getAllCourseRequests().then(function (data) {
+                CoursesService.getAllCourseRequests().then(function (data) {
                     console.log(data);
                     $scope.requests = data.response;
                     $scope.requests.forEach(function (element) {
@@ -42,25 +42,25 @@ angular.module('myApp').controller('adminController',
             }
 
             $scope.test = function () {
-                $scope.currentRequest = AuthService.getCurrentRequest();
+                $scope.currentRequest = CoursesService.getCurrentRequest();
                 $scope.currentRequest = JSON.parse($scope.currentRequest.response.request);
                 console.log($scope.currentRequest.accepted);
             }
 
             $scope.show = function (request) {
-                AuthService.setRequest(request);
+                CoursesService.setRequest(request);
                 $location.path('/update');
             }
 
             $scope.render = function () {
-                $scope.requestToView = AuthService.getCurrentRequest();
+                $scope.requestToView = CoursesService.getCurrentRequest();
             }
 
             $scope.submit = function () {
                 delete $scope.requestToView.$$hashKey;
                 delete $scope.requestToView.request.$$hashKey;
                 $scope.requestToView.request.reviewed = true;
-                AuthService.updateRequestById($scope.requestToView._id, $scope.requestToView).then(function (data) {
+                CoursesService.updateRequestById($scope.requestToView._id, $scope.requestToView).then(function (data) {
                     $scope.requests = data.response;
                     $scope.requests.forEach(function (element) {
                         try {

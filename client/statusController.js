@@ -1,6 +1,6 @@
 angular.module('myApp').controller('statusController',
-  ['$scope', '$location', 'AuthService',
-    function ($scope, $location, AuthService) {
+  ['$scope', '$location', 'AuthService', 'CoursesService',
+    function ($scope, $location, AuthService, CoursesService) {
       $scope.user = null;
       $scope.login = function () {
 
@@ -29,12 +29,12 @@ angular.module('myApp').controller('statusController',
 
       $scope.update = function () {
         $scope.user = AuthService.getUser();
-        AuthService.getRequestStatus();
-        $scope.currentRequest = AuthService.getCurrentRequest();
+        CoursesService.getRequestStatus();
+        $scope.currentRequest = CoursesService.getCurrentRequest();
       }
 
       $scope.test = function () {
-        $scope.currentRequest = AuthService.getCurrentRequest();
+        $scope.currentRequest = CoursesService.getCurrentRequest();
         try {
           $scope.currentRequest = JSON.parse($scope.currentRequest.response.request);
         } catch (err) {
